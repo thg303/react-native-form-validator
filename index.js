@@ -96,6 +96,15 @@ export default class ValidationComponent extends Component {
   getErrorMessages(separator="\n") {
     return this.errors.map((err) => err.messages.join(separator)).join(separator);
   }
+
+  // Method to return errors on a specific field
+  getErrorsInField(fieldName) {
+    const foundError = this.errors.filter(err => err.fieldName === fieldName)
+    if (foundError.length === 0) {
+      return []
+    }
+    return foundError[0].messages
+  }
 }
 
 // PropTypes for component
